@@ -11,6 +11,7 @@ def get_model(input_dim, optimizer, learning_rate, n_classes, model_name="vgg", 
     }
 
     hidden_layer = {
+      "effnet":64,
       "resnet": 64,
       "vgg": 64
     }
@@ -37,7 +38,7 @@ def get_model(input_dim, optimizer, learning_rate, n_classes, model_name="vgg", 
           each_layer.trainable=False
       model.add(pretrained_resnet50)
     elif model_name == "effnet":
-      pretrained_EfficientNetB7 = tf.keras.applications.EfficientNetB7(
+      pretrained_EfficientNetB7 = tf.keras.applications.efficientnetb7.EfficientNetB7(
                 include_top=False,
                 weights='imagenet',
                 input_shape=input_dim,
