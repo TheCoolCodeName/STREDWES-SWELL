@@ -48,7 +48,7 @@ def get_model(input_dim, optimizer, learning_rate, n_classes, model_name="vgg", 
       if not trainable:
         for each_layer in pretrained_EfficientNetB7.layers:
           each_layer.trainable=False
-      model.add(pretrained_EfficientNetB7)
+      model.add(pretrained_efficientnetb7)
     else:
       model.add(tf.keras.layers.Convolution2D(16, (3, 3), activation='relu', input_shape=input_dim))
 #      model.add(tf.keras.layers.Convolution2D(16, (3, 3), activation='relu'))
