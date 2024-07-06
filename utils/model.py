@@ -38,7 +38,7 @@ def get_model(input_dim, optimizer, learning_rate, n_classes, model_name="vgg", 
           each_layer.trainable=False
       model.add(pretrained_resnet50)
     elif model_name == "effnet":
-      pretrained_EfficientNetB7 = tf.keras.applications.efficientnetb7.EfficientNetB7(
+      pretrained_efficientnetb7 = tf.keras.applications.efficientnetb7.EfficientNetB7(
                 include_top=False,
                 weights='imagenet',
                 input_shape=input_dim,
@@ -46,7 +46,7 @@ def get_model(input_dim, optimizer, learning_rate, n_classes, model_name="vgg", 
                 classes=n_classes
                 )
       if not trainable:
-        for each_layer in pretrained_EfficientNetB7.layers:
+        for each_layer in pretrained_efficientnetb7.layers:
           each_layer.trainable=False
       model.add(pretrained_efficientnetb7)
     else:
