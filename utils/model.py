@@ -67,7 +67,7 @@ def get_model(input_dim, optimizer, learning_rate, n_classes, model_name="vgg", 
 
     model.compile(optimizers[optimizer], loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-   print('Neural Network Model Summary: ')
+ #  print('Neural Network Model Summary: ')
     print(model.summary())
 #    print('------------------------------')
     
