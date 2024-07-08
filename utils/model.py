@@ -12,6 +12,7 @@ def get_model(input_dim, optimizer, learning_rate, n_classes, model_name="vgg", 
 
     hidden_layer = {
       "efficientnet ":64,
+      "inception_v3" :64,
       "resnet": 64,
       "vgg": 64
     }
@@ -38,7 +39,7 @@ def get_model(input_dim, optimizer, learning_rate, n_classes, model_name="vgg", 
           each_layer.trainable=False
       model.add(pretrained_resnet50)
     elif model_name == "efficientnet":
-      pretrained_inception_v3 = tf.keras.applications.EfficientNetB7 (
+      pretrained_efficientnet = tf.keras.applications.EfficientNetB7 (
                 include_top=False,
                 weights='imagenet',
                 input_shape=input_dim,
@@ -49,6 +50,18 @@ def get_model(input_dim, optimizer, learning_rate, n_classes, model_name="vgg", 
         for each_layer in pretrained_efficientnet.layers:
           each_layer.trainable=False
       model.add(pretrained_efficientnet)
+    elif model_name == "inception_v3":
+      pretrained_inception_v3 = tf.keras.applications.InceptionV3 (
+                include_top=False,
+                weights='imagenet',
+                input_shape=input_dim,
+                pooling='max',
+                classes=n_classes
+                )
+      if not trainable:
+        for each_layer in pretrained_inception_v3.layers:
+          each_layer.trainable=False
+      model.add(pretrained_inception_v3)
     else:
       model.add(tf.keras.layers.Convolution2D(16, (3, 3), activation='relu', input_shape=input_dim))
 #      model.add(tf.keras.layers.Convolution2D(16, (3, 3), activation='relu'))
