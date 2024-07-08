@@ -11,7 +11,7 @@ def get_model(input_dim, optimizer, learning_rate, n_classes, model_name="vgg", 
     }
 
     hidden_layer = {
-      "efficientnet ":64,
+      "efficientnet":64,
       "inception_v3" :64,
       "resnet": 64,
       "vgg": 64
